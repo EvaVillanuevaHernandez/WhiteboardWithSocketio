@@ -4,7 +4,7 @@ var http =require('http').createServer(app);
 
 const io = require("socket.io")(http, {
     cors: {
-      origin: "http://localhost:3001",
+      origin: "*",//Ojo esto indica el puerto del frontend
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
       credentials: true

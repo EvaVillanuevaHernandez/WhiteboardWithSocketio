@@ -6,6 +6,8 @@ class Board extends React.Component {
     timeout;
     socket = io.connect("http://localhost:5000");
 
+    ctx;
+
     constructor(props) {
         super(props);
 
@@ -25,12 +27,19 @@ class Board extends React.Component {
     componentDidMount(){
         this.drawOnCanvas();
     }
+
+    componentWillReceiveProps(newProps){
+    this.ctx.strokeStyle = newProps.color;
+    this.ctx.lineWidth= newProps.size;
+    }
+
     drawOnCanvas() {
 
         // var canvas = document.querySelector('#board');
         var canvas = document.getElementById('board');
 
-        var ctx = canvas.getContext('2d');
+        this.ctx = canvas.getContext('2d');
+        var ctx = this.ctx;
 
         var sketch = document.querySelector('#sketch');
         var sketch_style = getComputedStyle(sketch);
@@ -51,10 +60,10 @@ class Board extends React.Component {
 
 
         /* Drawing on Paint App */
-        ctx.lineWidth = 5;
+        ctx.lineWidth = this.props.size;
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
-        ctx.strokeStyle = 'blue';
+        ctx.strokeStyle = this.props.color;
 
         canvas.addEventListener('mousedown', function (e) {
             canvas.addEventListener('mousemove', onPaint, false);
