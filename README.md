@@ -11,7 +11,7 @@
 ---
 First practice of websockets with socketio, React and node.js.
  
-##Installation guide
+## Installation guide
 ---
 $ git clone https://github.com/EvaVillanuevaHernandez/WhiteboardWithSocketio.git
 
